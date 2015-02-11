@@ -36,7 +36,6 @@ for result in results:
 
 diffs = glob('./diffs/*')
 
-
 minlength = 1000000000
 maxlength = -1
 acclength = 0

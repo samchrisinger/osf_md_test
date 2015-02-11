@@ -1,14 +1,28 @@
-var MarkdownIt = require('markdown-it');
 var fs = require('fs');
 var request = require('request');
+var md = require('markdown-it')('commonmark');
+//var hljs = require('highlight.js')
+/*({
+    html: true,
+    linkify: true,
+    highlight: function (str, lang) {
+	if (lang && hljs.getLanguage(lang)) {
+	    try {
+		return hljs.highlight(lang, str).value;
+	    } catch (__) {}
+	}
+	try {
+	    return hljs.highlightAuto(str).value;
+	} catch (__) {}	
+	return ''; // use external default escaping
+    }
+})*/
 
 var config = JSON.parse(fs.readFileSync('config.json', 'utf8'));
 var API = config.API;
 var SEARCH = API + config.SEARCH;
 var LOCAL = config.LOCAL;
 var LOCAL_PATH = config.LOCAL_PATH;
-
-var md = new MarkdownIt();
 
 var processQueries = function(queries){
     queries.map(function(q){
