@@ -5,6 +5,6 @@
 
 # Running
 
-- With ypur virtualenv active, run ```python run.py [|update=True]```
+- With your virtualenv active, run ```python run.py [|update=True]```
 
 
