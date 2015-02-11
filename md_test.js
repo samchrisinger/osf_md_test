@@ -7,7 +7,9 @@ var API = config.API;
 var SEARCH = API + config.SEARCH;
 
 
-var md = new MarkdownIt();
+var md = new MarkdownIt({
+    html: true
+});
 
 request.get(SEARCH, function(err, res, body){
     var results = JSON.parse(body).results;
