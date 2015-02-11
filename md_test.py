@@ -63,7 +63,7 @@ else:
         # Always cache the markdown
         md_string = resp.json().get('wiki_content')
         f = open('./mdcache/' + q['id'] + '.md', 'w')
-        f.write(md_string.encode('ascii', 'ignore'))
+        f.write((md_string or '').encode('ascii', 'ignore'))
         f.close()
         render_and_write(q['id'], md_string)
 

@@ -1,6 +1,6 @@
 {
     "SEARCH": "search?q=category:project&size=100",
     "API": "https://osf.io/api/v1/",
-    "LOCAL": false,
+    "LOCAL": true,
     "LOCAL_PATH": "./local.json"
 }
