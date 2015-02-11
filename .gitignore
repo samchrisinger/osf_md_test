@@ -2,3 +2,4 @@ diffs/*
 markdown-it_results/*
 markdown-py_results/*
 node_modules/*
+mdcache/*

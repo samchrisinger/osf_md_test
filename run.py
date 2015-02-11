@@ -3,7 +3,8 @@ from glob import glob
 from subprocess import call
 
 config = {
-    'update': True
+    'update': True,
+    'usecache': False
 }
 
 def parse_bool(b):
@@ -18,10 +19,11 @@ if len(sys.argv) > 1:
         if parts[0] in config:
             config[parts[0]] = parse_bool(parts[1])
 
-
 if config['update']:
-    call('node md_test.js', shell=True)
-    call('python md_test.py', shell=True)
+    args = '--cached' if config['usecache'] else ''
+    call('python md_test.py ' + args, shell=True)
+    call('node md_test.js ' + args, shell=True)
+
 
 MARKDOWNIT_RESULTS = './markdown-py_results'
 MARKDOWNPY_RESULTS = './markdown-it_results'
