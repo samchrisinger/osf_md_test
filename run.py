@@ -32,7 +32,7 @@ results = set(map(getfname, glob(MARKDOWNIT_RESULTS + '/*.html'))).intersection(
 )
 
 for result in results:
-    call("diff {0}/{1} {2}/{1} >> ./diffs/{3}".format(MARKDOWNPY_RESULTS, result, MARKDOWNIT_RESULTS, result.split('.')[0]), shell=True)
+    call("diff -b {0}/{1} {2}/{1} >> ./diffs/{3}".format(MARKDOWNPY_RESULTS, result, MARKDOWNIT_RESULTS, result.split('.')[0]), shell=True)
 
 diffs = glob('./diffs/*')
 
