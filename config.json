@@ -1,0 +1,4 @@
+{
+    "SEARCH": "search?q=category:project&size=100",
+    "API": "https://osf.io/api/v1/"
+}
