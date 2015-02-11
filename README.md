@@ -5,7 +5,7 @@
 
 # Running
 
-- With your virtualenv active, run ```python run.py [|update=True]```
+- With your virtualenv active, run ```python run.py [|update=True|usecache=False] ```
 
 # What to expect
 
