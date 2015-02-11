@@ -5,19 +5,14 @@ var request = require('request');
 var config = JSON.parse(fs.readFileSync('config.json', 'utf8'));
 var API = config.API;
 var SEARCH = API + config.SEARCH;
-
+var LOCAL = config.LOCAL;
+var LOCAL_PATH = config.LOCAL_PATH;
 
 var md = new MarkdownIt({
     html: true
 });
 
-request.get(SEARCH, function(err, res, body){
-    var results = JSON.parse(body).results;
-    
-    var queries = results.map(function(r){
-	return {id: r.url.replace(/\//g, ''), url: API + 'project' + r.url + 'wiki/home/content/'};
-    });
-
+var processQueries = function(queries){
     queries.map(function(q){
 	request.get(q.url, function(err, res, body){
 	    var content = JSON.parse(body).wiki_content;
@@ -31,5 +26,19 @@ request.get(SEARCH, function(err, res, body){
 	    });
 	});
     });
-});
+};
+
+if (LOCAL){
+    var queries = JSON.parse(fs.readFileSync(LOCAL_PATH, 'utf-8'));       
+    processQueries(queries);
+}
+else{
+    request.get(SEARCH, function(err, res, body){
+	var results = JSON.parse(body).results;
+	var queries = results.map(function(r){
+	    return {id: r.url.replace(/\//g, ''), url: API + 'project' + r.url + 'wiki/home/content/'};
+	});
+	processQueries(queries);
+    });
+}
 
